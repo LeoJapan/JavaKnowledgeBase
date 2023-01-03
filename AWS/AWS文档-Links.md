@@ -7,3 +7,6 @@
   + [1-6. 什么是AWS Snowball？](https://docs.aws.amazon.com/zh_cn/snowball/latest/developer-guide/whatisedge.html)
   + [1-7. 什么是 Amazon Simple Queue](https://docs.aws.amazon.com/zh_cn/AWSSimpleQueueService/latest/SQSDeveloperGuide/welcome.html)
   + [1-50. AWS Systems Manager 功能 – Amazon Web Services (AWS)](https://aws.amazon.com/cn/systems-manager/features/)
+  + [2-1_1. Messaging Service – Amazon Simple Notification Service (SNS) – Amazon Web Services](https://aws.amazon.com/cn/sns/?nc1=h_ls)
+  + [2-1_2. Amazon Simple Email Service FAQs | Cloud Email Service | Amazon Web Services](https://aws.amazon.com/cn/ses/faqs/?nc1=h_ls)
+  
