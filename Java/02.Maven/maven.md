@@ -10,8 +10,7 @@
 #### 1.1 为什么要使用maven
 > 使用maven来统一管理项目中的jar包  
 
-<br/>
-#### 1.2  maven的概述  
+#### 1.2 maven的概述  
 
 Maven就是一款帮助程序员构建项目的工具，我们只需要告诉Maven需要哪些Jar 包，它会帮助我们下载所有的Jar，极大提升开发效率
 
@@ -26,3 +25,16 @@ javac不一样，javac一次编译一个文件。
 这个压缩文件就是项目的结果文件，通常java程序压缩文件是jar扩展名的。对于web应用， 压缩文件扩展名是.war。  
 > **6.安装**，把5中生成的文件jar，war安装到本地仓库  
 > **7.部署**，把程序安装好可以执行  
+
+#### 1.3 maven的项目结构 
+Maven规定的统一的目录结构
+> maven项目标准目录结构：  
+>
+>  maven的java工程：  
+>   src/main/java目录  核心代码部分  
+>   src/main/resources  配置文件部分  
+>   src/test/java目录  测试代码部分  
+>   src/test/resources  测试配置文件  
+>
+>  maven的web工程：  
+>   src/main/webapp 页面资源，js，css，图片等等
