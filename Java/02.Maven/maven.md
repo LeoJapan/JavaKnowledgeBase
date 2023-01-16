@@ -87,7 +87,9 @@ maven私服适合于 多个不同的开发 共享使用同一个maven私服仓�
 
 
 
-### 四、maven常用命令
+### 四、简单构建maven项目
+
+#### 4.1 maven常用命令
 
 |命令|描述|
 |---|---|
@@ -97,17 +99,17 @@ maven私服适合于 多个不同的开发 共享使用同一个maven私服仓�
 |mvn package|打包文件并存放到项目的target目录下，打包好的文件通常都是编译后的class文件|
 |mvn install|在本地仓库生成仓库的安装包，可供其他项目引用，同时打包后的文件放到项目的target目录下|
 
-\
-**maven项目标准目录结构：**  
-defu-web  
-&nbsp;&nbsp;src  
-&ensp;&ensp;&ensp;&ensp;main---- 主项目  
-&emsp;&emsp;&emsp;&emsp;java-------java代码  
-&emsp;&emsp;&emsp;&emsp;resources  
-&ensp;&ensp;&ensp;&ensp;test  
-&emsp;&emsp;&emsp;&emsp;java-------测试java代码  
-&emsp;&emsp;&emsp;&emsp;resources  
-&nbsp;&nbsp;pom.xml -----核心 例如 当前项目依赖的jar包  
+#### 4.2 maven项目标准目录结构：
+ 
+> defu-web  
+> &nbsp;&nbsp;src  
+> &ensp;&ensp;&ensp;&ensp;main---- 主项目  
+> &emsp;&emsp;&emsp;&emsp;java-------java代码  
+> &emsp;&emsp;&emsp;&emsp;resources  
+> &ensp;&ensp;&ensp;&ensp;test  
+> &emsp;&emsp;&emsp;&emsp;java-------测试java代码  
+> &emsp;&emsp;&emsp;&emsp;resources  
+> &nbsp;&nbsp;pom.xml -----核心 例如 当前项目依赖的jar包  
 
 \
 **pom.xml示例：**
@@ -134,3 +136,78 @@ defu-web
 </project>
 ```
 
+
+
+### 五、maven仓库配置
+
+#### 5.1 配置本地仓库
+> 1.maven安装目录：D:\path\maven\apache-maven-3.2.5  
+> 2.配置settings.xml  
+> 3.配置的本地仓库为 ```<localRepository>D:\maven\mvnRespo</localRepository>```
+```xml
+<dependencies>
+        <!--servlet 自动去远程仓库下载jar ，在缓存到本地仓库中-->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+    </dependencies>
+```
+#### 5.2 配置maven私服仓库
+> 1.maven安装目录：D:\path\maven\apache-maven-3.2.5  
+> 2.配置settings.xml  
+> 3.配置的私服仓库为国内阿里云私库
+```xml
+<mirrors>
+    <!-- mirror
+     | Specifies a repository mirror site to use instead of a given repository. The repository that
+     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+     |
+    <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>repositoryId</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://my.repository.com/repo/path</url>
+    </mirror>
+     -->
+	 
+	 <mirror>
+          <id>nexus-aliyun</id>
+          <mirrorOf>central</mirrorOf>
+          <name>Nexus aliyun</name>
+          <url>http://maven.aliyun.com/nexus/content/groups/public</url> 
+      </mirror>
+	 
+  </mirrors>
+```
+
+### 六、maven配置详解
+> 1.在Maven中坐标就是为了定位一个唯一确定的jar包,  
+> 2.使用Maven中坐标定义项目jar的依赖  
+> maven坐标的构成
+> groupId：定义当前Maven组织名称 例如 com.defu  com.()  
+> artifactId：定义实际项目名称    defu-web  
+> version：定义当前项目的当前版本   1.0  
+
+```xml
+<groupId>com.defu</groupId>
+    <artifactId>defu-maven-web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+```
+```xml
+ <!--mysql驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.37</version>
+        </dependency>
+```
+
+### 七、maven依赖范围
+> compile：默认的scope，运行期有效，需要打入包中  
+> provided：编译期有效，运行期不需要提供，不会打入包中  
+> runtime：编译不需要，在运行期有效，需要导入包中。（接口与实现分离）  
+> test：测试需要，不会打入包中  
+> system：非本地仓库引入、存在系统的某个路径下的jar。（一般不使用）  
