@@ -30,14 +30,14 @@ javac不一样，javac一次编译一个文件。
 Maven规定的统一的目录结构
 > maven项目标准目录结构：  
 >
->  maven的java工程：  
->   src/main/java目录  核心代码部分  
->   src/main/resources  配置文件部分  
->   src/test/java目录  测试代码部分  
->   src/test/resources  测试配置文件  
+>  &ensp;&ensp;maven的java工程：  
+>  &emsp;&emsp;src/main/java目录  核心代码部分  
+>  &emsp;&emsp;ssrc/main/resources  配置文件部分  
+>  &emsp;&emsp;ssrc/test/java目录  测试代码部分  
+>  &emsp;&emsp;ssrc/test/resources  测试配置文件  
 >
->  maven的web工程：  
->   src/main/webapp 页面资源，js，css，图片等等
+>  &ensp;&ensp;maven的web工程：  
+>  &emsp;&emsp;ssrc/main/webapp 页面资源，js，css，图片等等
 
 ### 二、maven下载jar包原理
 
@@ -63,4 +63,74 @@ Maven规定的统一的目录结构
 本地仓库适合于： 在同一台计算机电脑上 多个不同的项目 共享同一个本地仓库  
 maven私服适合于 多个不同的开发 共享使用同一个maven私服仓库**
 
-![下载jar包原理]（img/maven-01.png）
+![下载jar包原理](img/maven-01.png)
+
+
+
+### 三、maven环境的安装
+
+第一步：下载Maven的安装包(https://maven.apache.org/download.cgi)  
+当前最新版本：[apache-maven-3.8.7-bin.zip](https://dlcdn.apache.org/maven/maven-3/3.8.7/binaries/apache-maven-3.8.7-bin.zip)
+
+第二步：  解压apache-maven-3.8.7-bin.zip这个文件
+
+第三步：进入我的电脑-->右击属性-->高级设置-->点击环境变量
+ 添加MAVEN_HOME的变量名 为 maven安装路径
+ MAVEN_HOME=D:\path\maven\apache-maven-3.2.5
+
+ 第四步：进入Path，添加%MAVEN_HOME%\bin  
+
+ 第五步：检查自己的maven是否配置成功
+ 按下win+r 并输入cmd 进入命令行模式。
+ 在命令行模式输入 mvn -version；  
+**注意：最好用管理员身份执行**
+
+
+
+### 四、maven常用命令
+
+|命令|描述|
+|---|---|
+|mvn clean|对项目进行清理，删除target目录下编译的内容|
+|mvn compile|编译项目源代码|
+|mvn test|对项目进行运行测试|
+|mvn package|打包文件并存放到项目的target目录下，打包好的文件通常都是编译后的class文件|
+|mvn install|在本地仓库生成仓库的安装包，可供其他项目引用，同时打包后的文件放到项目的target目录下|
+
+\
+**maven项目标准目录结构：**  
+defu-web  
+&nbsp;&nbsp;src  
+&ensp;&ensp;&ensp;&ensp;main---- 主项目  
+&emsp;&emsp;&emsp;&emsp;java-------java代码  
+&emsp;&emsp;&emsp;&emsp;resources  
+&ensp;&ensp;&ensp;&ensp;test  
+&emsp;&emsp;&emsp;&emsp;java-------测试java代码  
+&emsp;&emsp;&emsp;&emsp;resources  
+&nbsp;&nbsp;pom.xml -----核心 例如 当前项目依赖的jar包  
+
+\
+**pom.xml示例：**
+```maven
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.defu</groupId>
+    <artifactId>defu-web</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <dependencies>
+        <!--servlet 自动去远程仓库下载jar ，在缓存到本地仓库中-->
+        <dependency>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
+            <version>5.0.0</version>
+        </dependency>
+    </dependencies>
+
+</project>
+```
+
