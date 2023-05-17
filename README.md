@@ -17,7 +17,7 @@
 - [x] [99. web3字典](Web3.0/web3字典.md)
 ### 3. 日本語
 ### 4. MuleSoft
-- [x] [01. MuleSoft学习资料-Links](MuleSoft/Mulesoft学习资料-Links.md)
+- [x] [01. MuleSoft学习资料-Links](MuleSoft/MuleSoft学习资料-Links.md)
 ### 5. AWS
 - [x] [01. AWS文档-Links](AWS/AWS文档-Links.md)
 ### 9. Markdown
